@@ -8,13 +8,13 @@ loginForm.addEventListener("submit", function (e) {
 
   if (email === "user@test.com" && password === "123456") {
     localStorage.setItem("role", "user");
-    window.location.href = "user-dashboard.html";
+    window.location.href = "frontend/user-dashboard.html";
   }
 
   // Admin
   else if (email === "admin@test.com" && password === "123456") {
     localStorage.setItem("role", "admin");
-    window.location.href = "admin-dashboard.html";
+    window.location.href = "frontend/admin-dashboard.html";
   }
 
   else {
