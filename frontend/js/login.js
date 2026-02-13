@@ -1,3 +1,27 @@
+const loginForm = document.getElementById("loginForm");
+
+loginForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (email === "user@test.com" && password === "123456") {
+    localStorage.setItem("role", "user");
+    window.location.href = "user-dashboard.html";
+  }
+
+  // Admin
+  else if (email === "admin@test.com" && password === "123456") {
+    localStorage.setItem("role", "admin");
+    window.location.href = "admin-dashboard.html";
+  }
+
+  else {
+    alert("Invalid credentials");
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
@@ -16,5 +40,3 @@ document.addEventListener("DOMContentLoaded", () => {
   emailInput.addEventListener("input", validateForm);
   passwordInput.addEventListener("input", validateForm);
 });
-
-  
