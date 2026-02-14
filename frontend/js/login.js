@@ -1,3 +1,8 @@
+const users = [
+  { email: "user@test.com", password: "123456", role: "user" },
+  { email: "admin@test.com", password: "123456", role: "admin" }
+];
+
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", function (e) {
@@ -6,21 +11,25 @@ loginForm.addEventListener("submit", function (e) {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  if (email === "user@test.com" && password === "123456") {
-    localStorage.setItem("role", "user");
-    window.location.href = "frontend/user-dashboard.html";
-  }
+  const foundUser = users.find(
+    user => user.email === email && user.password === password
+  );
 
-  // Admin
-  else if (email === "admin@test.com" && password === "123456") {
-    localStorage.setItem("role", "admin");
-    window.location.href = "frontend/admin-dashboard.html";
-  }
+  if (foundUser) {
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("role", foundUser.role);
 
-  else {
+    window.location.replace(
+      foundUser.role === "admin"
+        ? "frontend/admin-dashboard.html"
+        : "frontend/user-dashboard.html"
+    );
+  } else {
     alert("Invalid credentials");
   }
 });
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");
